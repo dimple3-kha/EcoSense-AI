@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoSense AI - Environmental Monitoring Hub</title>
+  
+  <!-- Google Fonts: Outfit and Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for robust, high-quality icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Chart.js for premium dynamic charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sidebar Navigation -->
+  <aside>
+    <div class="brand">
+      <div class="brand-icon">
+        <i class="fa-solid fa-leaf"></i>
+      </div>
+      <div class="brand-name">
+        <h1>EcoSense AI</h1>
+        <p>Green Intelligence</p>
+      </div>
+    </div>
+    
+    <nav>
+      <div class="nav-item active" data-tab="dashboard">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Dashboard</span>
+      </div>
+      <div class="nav-item" data-tab="air">
+        <i class="fa-solid fa-wind"></i>
+        <span>Air Quality</span>
+      </div>
+      <div class="nav-item" data-tab="water">
+        <i class="fa-solid fa-droplet"></i>
+        <span>Water Analysis</span>
+      </div>
+      <div class="nav-item" data-tab="climate">
+        <i class="fa-solid fa-temperature-arrow-up"></i>
+        <span>Climate Risk</span>
+      </div>
+      <div class="nav-item" data-tab="plantation">
+        <i class="fa-solid fa-tree"></i>
+        <span>Tree Planner</span>
+      </div>
+    </nav>
+    
+    <div class="nav-footer">
+      <p>EcoSense v1.0.0</p>
+      <p>© 2026 AI Environmental</p>
+    </div>
+  </aside>
+
+  <!-- Main Content View -->
+  <main>
+    <header>
+      <div class="header-title">
+        <button class="sidebar-toggle"><i class="fa-solid fa-bars"></i></button>
+        <h2 id="header-display-title">Environmental Intelligence Platform</h2>
+        <p>Real-time biosphere simulation & prediction analytics</p>
+      </div>
+      <div class="header-meta">
+        <div class="live-badge">
+          <div class="live-dot"></div>
+          <span>LIVE SIMULATOR</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION: DASHBOARD OVERVIEW -->
+    <section id="dashboard-section" class="tab-content active">
+      <div class="grid-3">
+        <!-- Card 1: Temp -->
+        <div class="card emerald">
+          <div class="card-header">
+            <span class="card-title">Avg Temperature</span>
+            <div class="card-icon"><i class="fa-solid fa-temperature-half"></i></div>
+          </div>
+          <div class="stat-value"><span id="dash-temp">24.6</span>°C</div>
+          <div class="stat-desc">
+            <span class="stat-trend trend-up"><i class="fa-solid fa-arrow-up"></i> 0.2°C</span> vs last hour
+          </div>
+        </div>
+        
+        <!-- Card 2: CO2 -->
+        <div class="card sky">
+          <div class="card-header">
+            <span class="card-title">Carbon Density</span>
+            <div class="card-icon"><i class="fa-solid fa-cloud-sun"></i></div>
+          </div>
+          <div class="stat-value"><span id="dash-co2">416</span> ppm</div>
+          <div class="stat-desc">
+            <span class="stat-trend trend-down"><i class="fa-solid fa-arrow-down"></i> 3 ppm</span> atmospheric absorption
+          </div>
+        </div>
+
+        <!-- Card 3: Water index -->
+        <div class="card indigo">
+          <div class="card-header">
+            <span class="card-title">Water Quality Index</span>
+            <div class="card-icon"><i class="fa-solid fa-water"></i></div>
+          </div>
+          <div class="stat-value"><span id="dash-water">8.42</span> /10</div>
+          <div class="stat-desc">
+            <span class="stat-trend trend-down"><i class="fa-solid fa-arrow-down font-weight-bold"></i> 0.05</span> stability fluctuation
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Live chart -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Eco System Trends (Historical 6-Months)</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="dashboardChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Quick Summary info -->
+        <div class="card emerald">
+          <div class="card-header">
+            <span class="card-title">Environmental Status Summary</span>
+          </div>
+          <div style="line-height: 1.6; color: var(--text-secondary);">
+            <p style="margin-bottom: 1rem;">
+              The overall biological status scorecard is rated <strong class="text-emerald">Optimal (84%)</strong>. 
+              Carbon assimilation rates have increased due to local tree planting efforts, keeping regional atmospheric carbon rises under margins.
+            </p>
+            <div class="reforest-stat-card" style="width: 100%; text-align: left; background: rgba(255,255,255,0.02); margin-top: 1rem;">
+              <h5 style="margin-bottom: 0.5rem; color: var(--text-primary);">Core Bio-Markers</h5>
+              <div class="flex-between" style="font-size: 0.85rem; margin-bottom: 0.25rem;">
+                <span>Forest Cover Retention</span>
+                <span class="text-emerald">92.4%</span>
+              </div>
+              <div class="flex-between" style="font-size: 0.85rem; margin-bottom: 0.25rem;">
+                <span>Atmospheric Humidity</span>
+                <span><span id="dash-humidity">64</span>%</span>
+              </div>
+              <div class="flex-between" style="font-size: 0.85rem;">
+                <span>Ecosystem Diversity Score</span>
+                <span class="text-sky">A- (Excellent)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: AIR QUALITY MONITORING -->
+    <section id="air-section" class="tab-content">
+      <div class="grid-2">
+        <!-- AQI Config Sliders -->
+        <div class="card sky">
+          <div class="card-header">
+            <span class="card-title">Sensor Calibration Panel</span>
+          </div>
+          <div class="form-group">
+            <label>Fine Particulate Matter (PM2.5) — µg/m³</label>
+            <div class="range-slider-wrapper">
+              <input type="range" id="range-pm25" min="0" max="250" value="12">
+              <span class="slider-value" id="val-pm25">12</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Coarse Particulate Matter (PM10) — µg/m³</label>
+            <div class="range-slider-wrapper">
+              <input type="range" id="range-pm10" min="0" max="300" value="25">
+              <span class="slider-value" id="val-pm10">25</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Carbon Dioxide (CO2) — ppm</label>
+            <div class="range-slider-wrapper">
+              <input type="range" id="range-co2" min="300" max="1500" value="415">
+              <span class="slider-value" id="val-co2">415</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Nitrogen Dioxide (NO2) — ppb</label>
+            <div class="range-slider-wrapper">
+              <input type="range" id="range-no2" min="0" max="200" value="15">
+              <span class="slider-value" id="val-no2">15</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Sulfur Dioxide (SO2) — ppb</label>
+            <div class="range-slider-wrapper">
+              <input type="range" id="range-so2" min="0" max="150" value="5">
+              <span class="slider-value" id="val-so2">5</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AQI Output Analysis -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Real-Time AQI Output</span>
+          </div>
+          <div id="aqi-result-box" class="result-box hidden">
+            <div class="result-header">
+              <span class="result-title">Air Quality Index</span>
+              <span class="badge" id="aqi-badge">Good</span>
+            </div>
+            <div class="stat-value" style="font-size: 3.5rem; margin-bottom: 1rem;" id="aqi-score-val">0</div>
+            <p class="result-desc" id="aqi-desc">Calibrating sensors...</p>
+            
+            <div class="ai-recommendation">
+              <div class="ai-recommendation-title">
+                <i class="fa-solid fa-microchip-ai"></i> Eco-AI Recommendation
+              </div>
+              <p id="aqi-rec-text">Evaluating sensor array data to produce environmental suggestions...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: WATER QUALITY ANALYSIS -->
+    <section id="water-section" class="tab-content">
+      <div class="grid-2">
+        <!-- Water parameters -->
+        <div class="card indigo">
+          <div class="card-header">
+            <span class="card-title">Chemical & Bio Sensor Inputs</span>
+          </div>
+          <div class="form-group">
+            <label>Acidity Level (pH)</label>
+            <div class="range-slider-wrapper">
+              <input type="range" id="range-ph" min="0" max="14" step="0.1" value="7.2">
+              <span class="slider-value" id="val-ph">7.2</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Turbidity (Cloudiness) — NTU</label>
+            <div class="range-slider-wrapper">
+              <input type="range" id="range-turbidity" min="0" max="50" step="0.5" value="1.2">
+              <span class="slider-value" id="val-turbidity">1.2</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Dissolved Oxygen (DO) — mg/L</label>
+            <div class="range-slider-wrapper">
+              <input type="range" id="range-do" min="0" max="15" step="0.1" value="8.5">
+              <span class="slider-value" id="val-do">8.5</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Lead Trace Concentration — ppb</label>
+            <div class="range-slider-wrapper">
+              <input type="range" id="range-lead" min="0" max="100" value="2">
+              <span class="slider-value" id="val-lead">2</span>
+            </div>
+          </div>
+          
+          <button class="btn btn-sky mt-2" id="btn-purify-water">
+            <i class="fa-solid fa-filter"></i> Run Active Chemical Purifier
+          </button>
+        </div>
+
+        <!-- Water Results -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Eco-AI Water Analysis Result</span>
+          </div>
+          <div id="water-result-box" class="result-box hidden">
+            <div class="result-header">
+              <span class="result-title">Safety Status</span>
+              <span class="badge" id="water-badge">Safe</span>
+            </div>
+            <p class="result-desc" id="water-desc">Analyzing parameters...</p>
+            
+            <div class="ai-recommendation mt-3">
+              <div class="ai-recommendation-title">
+                <i class="fa-solid fa-hand-holding-droplet text-sky"></i> Ecological Purification Plan
+              </div>
+              <p id="water-treatment-text">Evaluating optimal filtration protocols based on turbidity and chemical structure.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: CLIMATE RISK PREDICTION -->
+    <section id="climate-section" class="tab-content">
+      <div class="climate-risk-grid">
+        <!-- Configuration -->
+        <div class="card amber">
+          <div class="card-header">
+            <span class="card-title">Climate Simulation Controls</span>
+          </div>
+          <div class="form-group">
+            <label for="select-region">Geographic Sub-Region</label>
+            <select id="select-region">
+              <option value="coastal">Coastal Shoreline / Delta</option>
+              <option value="urban">Urban Industrial Cluster</option>
+              <option value="forested" selected>Forested Biosphere / Mountain</option>
+              <option value="arid">Arid Desert / Grassland</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="select-emission">Emission Pathway Scenario</label>
+            <select id="select-emission">
+              <option value="low">Low Carbon (SSP1-2.6 / Net Zero)</option>
+              <option value="medium" selected>Moderate Pathways (SSP2-4.5)</option>
+              <option value="high">High Carbon Trajectory (SSP5-8.5)</option>
+            </select>
+          </div>
+          
+          <!-- Summary Metrics -->
+          <div class="reforest-stat-card mt-2" style="background: rgba(245, 158, 11, 0.05); border-color: rgba(245, 158, 11, 0.2);">
+            <h5>Projected Temp Rise (2100)</h5>
+            <p class="text-amber" id="risk-temp-2100">+1.5°C</p>
+          </div>
+          <div class="reforest-stat-card mt-1" style="background: rgba(14, 165, 233, 0.05); border-color: rgba(14, 165, 233, 0.2);">
+            <h5>Sea Level Displacement</h5>
+            <p class="text-sky" id="risk-sea-2100">30 cm</p>
+          </div>
+          <div class="reforest-stat-card mt-1" style="background: rgba(244, 63, 94, 0.05); border-color: rgba(244, 63, 94, 0.2);">
+            <h5>Extreme Weather Frequency</h5>
+            <p class="text-rose" id="risk-weather-2100">35%</p>
+          </div>
+        </div>
+
+        <!-- Projections Chart -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Intertemporal Projections (To 2100)</span>
+          </div>
+          <div class="chart-container" style="height: 280px;">
+            <canvas id="climateChart"></canvas>
+          </div>
+          <div class="ai-recommendation mt-2">
+            <div class="ai-recommendation-title">
+              <i class="fa-solid fa-chart-line text-amber"></i> AI Risk Summary
+            </div>
+            <p id="climate-summary-text">Calibrating scenario parameters...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: TREE PLANTATION PLANNER -->
+    <section id="plantation-section" class="tab-content">
+      <div class="tree-planner-container">
+        <!-- Palette & Controls -->
+        <div class="card emerald">
+          <div class="card-header">
+            <span class="card-title">Species Palette Selector</span>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+            Select a tree type below and click anywhere in the restoration grid to plant it. Click a planted tree to clear it.
+          </p>
+          <div class="tree-palette">
+            <div class="tree-type-option selected" data-emoji="🌳" data-name="Oak Tree" data-offset="22">
+              <div class="tree-avatar">🌳</div>
+              <div class="tree-details">
+                <h4>Oak Tree</h4>
+                <p>High canopy, long-lived. Offset: 22 kg CO2/yr</p>
+              </div>
+            </div>
+            <div class="tree-type-option" data-emoji="🌿" data-name="Neem Tree" data-offset="18">
+              <div class="tree-avatar">🌿</div>
+              <div class="tree-details">
+                <h4>Neem Tree</h4>
+                <p>Natural air purifier, hardy. Offset: 18 kg CO2/yr</p>
+              </div>
+            </div>
+            <div class="tree-type-option" data-emoji="🎋" data-name="Bamboo" data-offset="35">
+              <div class="tree-avatar">🎋</div>
+              <div class="tree-details">
+                <h4>Bamboo Grove</h4>
+                <p>Rapid grow, massive offset. Offset: 35 kg CO2/yr</p>
+              </div>
+            </div>
+            <div class="tree-type-option" data-emoji="🌲" data-name="Pine Tree" data-offset="15">
+              <div class="tree-avatar">🌲</div>
+              <div class="tree-details">
+                <h4>Pine Tree</h4>
+                <p>Acid soil survivor, fast cover. Offset: 15 kg CO2/yr</p>
+              </div>
+            </div>
+          </div>
+          
+          <button class="btn btn-primary mt-3" id="btn-clear-grid">
+            <i class="fa-solid fa-trash-can"></i> Clear Restoration Zone
+          </button>
+        </div>
+
+        <!-- Restoration Grid -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Restoration Grid Map</span>
+            <span class="badge safe" id="reforest-percent">0%</span>
+          </div>
+          
+          <div class="tree-grid-panel">
+            <div class="tree-grid">
+              <!-- Grid items will be auto-generated by JS -->
+            </div>
+            
+            <div class="reforestation-stats">
+              <div class="reforest-stat-card">
+                <h5>Planted Trees</h5>
+                <p id="tree-count-val">0</p>
+              </div>
+              <div class="reforest-stat-card">
+                <h5>Carbon Absorption</h5>
+                <p id="co2-offset-val">0 kg/yr</p>
+              </div>
+            </div>
+            
+            <div class="reforest-stat-card" style="width: 100%; margin-top: 0.75rem;">
+              <h5>Equivalent Emissions Offset</h5>
+              <p style="color: var(--color-sky);" id="cars-offset-val">0.000</p>
+              <span style="font-size: 0.7rem; color: var(--text-muted);">Passenger cars taken off road per year</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast and Alert container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Custom Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>

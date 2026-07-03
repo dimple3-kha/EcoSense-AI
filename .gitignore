@@ -1,0 +1,15 @@
+# Windows thumbnail database
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# OS metadata
+$RECYCLE.BIN/
+
+# Node/npm (not currently used, but good to have)
+node_modules/
+npm-debug.log*
+
+# Temp files
+*.tmp
+*.log
