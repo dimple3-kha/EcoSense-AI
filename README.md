@@ -67,7 +67,8 @@ EcoSense AI combines environmental monitoring with artificial intelligence to cr
 Instead of simply displaying numbers, the AI interprets the data and provides actionable recommendations.
 
 ---
-"C:\Users\Dell\Desktop\photo_2026-07-04_23-11-01.jpg"
+![Uploading photo_2026-07-04_23-11-01.jpg…]()
+
 
 # 🏠 Dashboard Module
 
