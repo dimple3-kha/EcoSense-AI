@@ -346,6 +346,7 @@ Users can explore different tree species and estimate their environmental benefi
 ✔️ Improves forest cover
 
 ---
+<img width="1840" height="855" alt="Image" src="https://github.com/user-attachments/assets/529406de-28b5-45d3-8be6-e279b5bd4737" />
 
 ### Planner Features
 
