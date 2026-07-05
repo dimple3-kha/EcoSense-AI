@@ -523,7 +523,8 @@ The AI engine powers the platform by analyzing environmental data and generating
 
 ---
 
-# 🏆 Conclusion
+# 🏆 Overview
+<img width="1840" height="855" alt="Image" src="https://github.com/user-attachments/assets/529406de-28b5-45d3-8be6-e279b5bd4737" />
 
 **EcoSense AI** is an innovative and comprehensive environmental intelligence platform that integrates **air quality monitoring, water quality assessment, climate risk prediction, ecosystem health evaluation, carbon emission analysis, and tree plantation planning** into a single intelligent system. By combining **Artificial Intelligence, predictive analytics, and interactive data visualization**, the platform transforms raw environmental data into meaningful insights and actionable recommendations.
 
