@@ -297,7 +297,7 @@ Interactive graphs show projected changes from the present year up to **2100**, 
 
 
 # 🌱 Tree Planner Module
-<img width="1196" height="1280" alt="Image" src="https://github.com/user-attachments/assets/31a94816-458b-42d1-b775-f8d484f1c2f4" />
+
 
 This module focuses on ecosystem restoration through strategic tree plantation.
 
